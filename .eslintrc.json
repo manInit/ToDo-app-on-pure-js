@@ -1,0 +1,22 @@
+{
+  "parser": "@babel/eslint-parser",
+  "env": {
+    "es6": true,
+    "browser": true,
+    "node": true
+  },
+  "rules": {
+    "semi": ["warn", "always"],
+    "no-unused-vars": [
+      "warn", { 
+      "vars": "all" 
+      }
+    ]
+  },
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "extends": [
+    "eslint:recommended"
+  ]
+}
