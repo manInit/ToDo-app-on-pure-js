@@ -1,0 +1,94 @@
+.todo
+  margin: 0 auto
+  max-width: 550px
+  position: relative
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1)
+  background: #fff
+  font-size: 24px
+  color: #4d4d4d
+  &__input
+    width: 100%
+    padding: 16px 16px 16px 0
+    border: none
+    box-sizing: border-box
+    font-size: inherit
+    font-weight: normal
+    &:placeholder
+      color: #e6e6e6
+      font-weight: 300
+      font-style: italic
+    &:focus-visible
+      border: none
+      outline: 0
+    &_task
+      display: none
+  &__header 
+    display: flex
+  &__selectAll 
+    width: 60px
+    display: flex
+    justify-content: center
+    align-items: end
+  &__items
+    border-top: 1px solid #e6e6e6
+  &__text
+    border-top: 1px solid #e6e6e6
+    border-bottom: 1px solid #e6e6e6
+    padding: 16px 16px 16px 60px
+    font-size: inherit
+  &__info
+    color: #777
+    height: 20px
+    padding: 10px
+    line-height: 20px
+    position: relative
+    display: flex
+    justify-content: center
+  &__count
+    font-size: 14px
+    margin-left: 10px
+    position: absolute
+    left: 0
+  &__filters
+    &::before
+      content: ''
+      position: absolute
+      height: 50px
+      right: 0
+      left: 0
+      bottom: 0
+      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 8px 0 -3px #f6f6f6, 0 9px 1px -3px rgba(0, 0, 0, 0.2), 0 16px 0 -6px #f6f6f6, 0 17px 2px -6px rgba(0, 0, 0, 0.2)
+  &__filter
+    display: inline-block
+    height: 20px
+  &__btn
+    font-size: 14px
+    line-height: 20px
+    vertical-align: super
+    color: #777
+    padding: 2px 10px
+    border: 1px solid transparent
+    transition: all 0.2s 
+    &:hover
+      border-color: rgba(175, 47, 47, 0.15)
+    &_active
+      border-color: rgba(175, 47, 47, 0.2)
+  &__toggleAll
+    display: none
+  &__labelAll
+    display: block
+    transform: rotate(90deg)
+    height: 20px
+    width: 20px
+    position: relative
+    bottom: 10px
+    cursor: pointer
+    &::before
+      content: '❯'
+      display: block
+      font-size: 22px
+      color: #e6e6e6
+  
+    
+
+    

@@ -1,4 +1,5 @@
+import { todo } from './js/todo';
 import './styles/index.sass';
 
 
-console.log('hello world');
+console.log(todo());

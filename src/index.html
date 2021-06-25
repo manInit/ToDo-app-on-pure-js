@@ -1,13 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Document</title>
 	<link rel="stylesheet" href="main.css">
 </head>
+
 <body>
-	
+	<main>
+		<h1>todos</h1>
+		<div class="todo">
+			<header class="todo__header">
+				<div class="todo__selectAll">
+					<input id="toggleAll" class="todo__toggleAll" type="checkbox">
+					<label class="todo__labelAll" for="toggleAll"></label>
+				</div>
+				<input class="todo__input" type="text" placeholder="Your great things">
+			</header>
+			
+			<ul class="todo__items">
+				<li class="todo__item">
+					<div class="todo__text">some task</div>
+					<input class="todo__input todo__input_task" type="text">
+				</li>
+			</ul>
+			<footer class="todo__info">
+				<div class="todo__count">
+					<span class="todo__number">9</span> item left
+				</div>
+				<ul class="todo__filters">
+					<li class="todo__filter"><a class="todo__btn todo__btn_active" href="#/all">All</a></li>
+					<li class="todo__filter"><a class="todo__btn" href="#/active">Active</a></li>
+					<li class="todo__filter"><a class="todo__btn" href="#/completed">Completed</a></li>
+				</ul>
+			</footer>
+		</div>
+	</main>
 	<script src="main.js"></script>
 </body>
+
 </html>
