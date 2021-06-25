@@ -78,7 +78,8 @@ module.exports = {
 	},
 	devtool: isDev ? 'source-map' : false,
 	devServer: {
-		contentBase: './dist',
+		contentBase: path.join(__dirname, 'src'),
+    watchContentBase: true,
 		open: true,
 		hot: true
 	}
