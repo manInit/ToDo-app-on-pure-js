@@ -31,38 +31,85 @@
     align-items: end
   &__items
     border-top: 1px solid #e6e6e6
+  &__toggle
+    width: 60px
+    position: relative
+    display: flex
+    justify-content: start
+    align-items: center
+    &::after
+      content: ''
+      position: absolute
+      left: 4px
+      width: 40px
+      height: 40px
+      background-image: url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%22-10%20-18%20100%20135%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2250%22%20fill%3D%22none%22%20stroke%3D%22%23bddad5%22%20stroke-width%3D%223%22/%3E%3Cpath%20fill%3D%22%235dc2af%22%20d%3D%22M72%2025L42%2071%2027%2056l-4%204%2020%2020%2034-52z%22/%3E%3C/svg%3E')
+  &__check
+    opacity: 0
+    width: 60px
+    height: 100%
+  &__item
+    display: flex
+    &:hover .todo__destroy
+      display: block
+  &__destroy
+    display: none
+    width: 60px
+    font-size: 30px
+    background: none
+    border: none
+    transition: color 0.2s
+    cursor: pointer
+    color: #cc9a9a
+    &::after
+      content: '×'
+    &:hover
+      color: #af5b5e
   &__text
+    display: inline-block
     border-top: 1px solid #e6e6e6
     border-bottom: 1px solid #e6e6e6
-    padding: 16px 16px 16px 60px
+    flex-grow: 1
+    padding: 16px 16px 16px 0
     font-size: inherit
   &__info
     color: #777
     height: 20px
     padding: 10px
+    font-size: 14px
     line-height: 20px
     position: relative
     display: flex
     justify-content: center
+    z-index: 2
+  &__clear
+    font-size: inherit
+    position: absolute
+    right: 0
+    margin-right: 10px
+    cursor: pointer
+    &:hover
+      text-decoration: underline
   &__count
-    font-size: 14px
+    font-size: inherit
     margin-left: 10px
     position: absolute
     left: 0
   &__filters
-    &::before
+    &::after
       content: ''
       position: absolute
       height: 50px
       right: 0
       left: 0
       bottom: 0
+      z-index: -1
       box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 8px 0 -3px #f6f6f6, 0 9px 1px -3px rgba(0, 0, 0, 0.2), 0 16px 0 -6px #f6f6f6, 0 17px 2px -6px rgba(0, 0, 0, 0.2)
   &__filter
     display: inline-block
     height: 20px
-  &__btn
-    font-size: 14px
+  &__link
+    font-size: inherit
     line-height: 20px
     vertical-align: super
     color: #777

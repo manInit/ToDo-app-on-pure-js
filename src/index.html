@@ -19,10 +19,13 @@
 				</div>
 				<input class="todo__input" type="text" placeholder="Your great things">
 			</header>
-			
 			<ul class="todo__items">
 				<li class="todo__item">
+					<div class="todo__toggle">
+						<input class="todo__check" type="checkbox">
+					</div>
 					<div class="todo__text">some task</div>
+					<button class="todo__destroy"></button>
 					<input class="todo__input todo__input_task" type="text">
 				</li>
 			</ul>
@@ -31,10 +34,11 @@
 					<span class="todo__number">9</span> item left
 				</div>
 				<ul class="todo__filters">
-					<li class="todo__filter"><a class="todo__btn todo__btn_active" href="#/all">All</a></li>
-					<li class="todo__filter"><a class="todo__btn" href="#/active">Active</a></li>
-					<li class="todo__filter"><a class="todo__btn" href="#/completed">Completed</a></li>
+					<li class="todo__filter"><a class="todo__link todo__btn_active" href="#/all">All</a></li>
+					<li class="todo__filter"><a class="todo__link" href="#/active">Active</a></li>
+					<li class="todo__filter"><a class="todo__link" href="#/completed">Completed</a></li>
 				</ul>
+				<div class="todo__clear">Clear completed</div>
 			</footer>
 		</div>
 	</main>
