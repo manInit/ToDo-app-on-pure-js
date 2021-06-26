@@ -100,9 +100,9 @@ class ItemList {
     this._root.innerHTML = '';
     for (const task of tasksList) {
       const taskEl = task.getElement();
+      const idTask = taskEl.dataset.id;
       taskEl.addEventListener('click', e => {
         e.preventDefault();
-        const idTask = taskEl.dataset.id;
         const target = e.target;
 
         if (target.classList.contains('todo__destroy')) 
@@ -121,11 +121,20 @@ class ItemList {
 
         input.addEventListener('keypress', e => {
           if (e.key === 'Enter') {
-            task.text = input.value;
-            input.style.display = 'none';
-            target.style.display = 'block';
+            if (input.value === '') {
+              this.deleteTask(idTask);
+            } else {
+              task.text = input.value;
+              input.style.display = 'none';
+              target.style.display = 'block';
+            }
             this._updateList();
           } 
+        });
+
+        input.addEventListener('focusout', e => {
+          input.style.display = 'none';
+          target.style.display = 'block';
         });
 
         input.value = target.innerText;
