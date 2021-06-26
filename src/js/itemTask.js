@@ -14,9 +14,9 @@ class ItemTask {
       <input class="todo__check" type="checkbox" ${this.completed ? "checked" : ""}>
       <span class="todo__badge"></span>
     </div>
-    <div class="todo__text">${this.text}</div>
-    <button class="todo__destroy"></button>
-    <input class="todo__input todo__input_task" type="text">`;
+    <div class="todo__text ${this.completed ? "todo__text_completed" : ""}">${this.text}</div>
+    <input class="todo__input todo__input_task" type="text">
+    <button class="todo__destroy"></button>`;
     
     return rootItem;
   }

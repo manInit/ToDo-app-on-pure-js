@@ -5,10 +5,17 @@ class ItemList {
     this._root = document.getElementsByClassName('todo__items')[0];
     this._todoNumberEl = document.getElementsByClassName('todo__number')[0];
     this._clearBtn = document.getElementsByClassName('todo__clear')[0];
-    this.tasks = tasks.map((taskObj, number) => new ItemTask({...taskObj, id: number}));
-    this._updateList();
-
+    this.tasks = this._getTaskArrFromObjects(tasks);
+    
+    if (JSON.parse(localStorage.getItem('task-list')).length === 0)
+      this._updateList();
+    else 
+      this._loadStateFromStorage();
     window.addEventListener('hashchange', this._updateList.bind(this));
+  }
+
+  _getTaskArrFromObjects(listObj) {
+    return listObj.map((taskObj, number) => new ItemTask({...taskObj, id: number}));
   }
 
   get completedCount() {
@@ -70,6 +77,17 @@ class ItemList {
     this.deleteTask(parseInt(id));
   }
 
+  _saveStateInStorage() {
+    const json = JSON.stringify(this.tasks);
+    localStorage.setItem('task-list', json);
+  }
+  
+  _loadStateFromStorage() {
+    const arrTask = JSON.parse(localStorage.getItem('task-list'));
+    this.tasks = this._getTaskArrFromObjects(arrTask);
+    this._updateList();
+  }
+
   _updateList() {
     const filter = window.location.hash.slice(2).toLowerCase();
     let tasksList = [];
@@ -93,11 +111,35 @@ class ItemList {
         if (target.classList.contains('todo__check'))
           this._checkBoxHandler.call(this, idTask);
       });
+
+      taskEl.addEventListener('dblclick', e => {
+        e.preventDefault();
+        const target = e.target;
+        if (!target.classList.contains('todo__text')) return;
+        const input = taskEl.getElementsByClassName('todo__input')[0]; 
+        
+
+        input.addEventListener('keypress', e => {
+          if (e.key === 'Enter') {
+            task.text = input.value;
+            input.style.display = 'none';
+            target.style.display = 'block';
+            this._updateList();
+          } 
+        });
+
+        input.value = target.innerText;
+        input.style.display = 'block';
+        target.style.display = 'none';
+        input.focus();
+      });
       this._root.appendChild(taskEl);
     }
     this._todoNumberEl.innerText = this.notCompletedCount;
     if (this.completedCount > 0) this._clearBtn.style.display = 'block';
     else this._clearBtn.style.display = '';
+
+    this._saveStateInStorage();
   }
 }
 
