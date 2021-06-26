@@ -7,7 +7,7 @@ class ItemList {
     this._clearBtn = document.getElementsByClassName('todo__clear')[0];
     this.tasks = this._getTaskArrFromObjects(tasks);
     
-    if (JSON.parse(localStorage.getItem('task-list')).length === 0)
+    if (!localStorage.getItem('task-list'))
       this._updateList();
     else 
       this._loadStateFromStorage();
@@ -95,6 +95,7 @@ class ItemList {
       case 'all': tasksList = this.tasks; break;
       case 'active': tasksList = this.tasks.filter(task => !task.completed); break;
       case 'completed': tasksList = this.tasks.filter(task => task.completed); break;
+      default: tasksList = this.tasks; break;
     }
 
     this._root.innerHTML = '';
