@@ -1,4 +1,3 @@
-import { list } from "postcss";
 import { ItemTask } from "./itemTask";
 
 class ItemList {
@@ -8,6 +7,8 @@ class ItemList {
     this._clearBtn = document.getElementsByClassName('todo__clear')[0];
     this.tasks = tasks.map((taskObj, number) => new ItemTask({...taskObj, id: number}));
     this._updateList();
+
+    window.addEventListener('hashchange', this._updateList.bind(this));
   }
 
   get completedCount() {
@@ -70,8 +71,16 @@ class ItemList {
   }
 
   _updateList() {
+    const filter = window.location.hash.slice(2).toLowerCase();
+    let tasksList = [];
+    switch(filter) {
+      case 'all': tasksList = this.tasks; break;
+      case 'active': tasksList = this.tasks.filter(task => !task.completed); break;
+      case 'completed': tasksList = this.tasks.filter(task => task.completed); break;
+    }
+
     this._root.innerHTML = '';
-    for (const task of this.tasks) {
+    for (const task of tasksList) {
       const taskEl = task.getElement();
       taskEl.addEventListener('click', e => {
         e.preventDefault();
