@@ -1,14 +1,21 @@
+import { list } from "postcss";
 import { ItemTask } from "./itemTask";
 
 class ItemList {
   constructor(tasks = []) {
     this._root = document.getElementsByClassName('todo__items')[0];
+    this._todoNumberEl = document.getElementsByClassName('todo__number')[0];
+    this._clearBtn = document.getElementsByClassName('todo__clear')[0];
     this.tasks = tasks.map((taskObj, number) => new ItemTask({...taskObj, id: number}));
     this._updateList();
   }
 
+  get completedCount() {
+    return this.tasks.length - this.notCompletedCount;
+  }
+
   get notCompletedCount() {
-    return this.tasks.filter(taskObj => taskObj.completed).length;
+    return this.tasks.filter(taskObj => !taskObj.completed).length;
   }
 
   isAllCompleted() {
@@ -23,6 +30,13 @@ class ItemList {
   deleteTask(id) {
     const removeIndex = this.tasks.map(task => task.id).indexOf(id);
     this.tasks.splice(removeIndex, 1);
+    this._updateList();
+  }
+
+  deleteAllCompleted() {
+    const idsCompleted = this.tasks.filter(task => task.completed).map(task => task.id);
+    for (const id of idsCompleted)
+      this.deleteTask(id);
     this._updateList();
   }
 
@@ -72,6 +86,9 @@ class ItemList {
       });
       this._root.appendChild(taskEl);
     }
+    this._todoNumberEl.innerText = this.notCompletedCount;
+    if (this.completedCount > 0) this._clearBtn.style.display = 'block';
+    else this._clearBtn.style.display = '';
   }
 }
 

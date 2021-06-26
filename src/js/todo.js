@@ -4,6 +4,11 @@ import { ItemList } from './itemList';
 const input = document.getElementsByClassName('todo__input')[0];
 const list = new ItemList();
 const selectAllBtn = document.getElementsByClassName('todo__selectAll')[0];
+const clearBtn = document.getElementsByClassName('todo__clear')[0];
+
+clearBtn.addEventListener('click', e => {
+  list.deleteAllCompleted();
+});
 
 selectAllBtn.addEventListener('click', e => {
   if (list.isAllCompleted())
